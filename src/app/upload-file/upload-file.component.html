@@ -1,33 +1,26 @@
 
 <div class="container mt-4">
-    <div class="input-group">
-
-        <input
+        <div class="input-group mb-3 d-flex justify-content-start">
+            <input 
+            id="files" 
+            style="visibility:hidden;" 
             type="file"
-            class="form-control"
-            (change)="onFileSelected($event)"
-            id="inputGroupFile04"
-            aria-describedby="inputGroupFileAddon04"
-            aria-label="Upload"
             accept="image/png,image/jpeg,image/jpg,application/pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword,application/vnd.ms-excel"
-        >
-
-        <!-- <button
-            class="btn btn-outline-secondary"
-            type="button"
-            id="inputGroupFileAddon04"
-        >
-            Button
-        </button> -->
-
-        <!-- <button type="reset" class="btn btn-warning btn-block text-white">
-            Reset
-            <i class="fa fa-refresh" aria-hidden="true"></i>
-        </button> -->
-
-        <button class="btn btn-primary" (click)="guardar()">
-            Guardar
-        </button>
-
-      </div>
+            (change)="onFileSelected($event)"
+            (click)="limpiarDatos()"
+            >
+            <label for="files" class="btn btn-outline-secondary form-control">{{ textoAdjunto }}</label>
+            
+            <button 
+                class="btn btn-danger"
+                type="button"
+                (click)="limpiarDatos()"
+            >
+                Eliminar
+            </button>
+            
+            <button class="btn btn-primary" (click)="guardar()">
+                Guardar
+            </button>
+        </div>
 </div>
