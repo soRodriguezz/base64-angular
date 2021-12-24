@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-upload-file',
@@ -36,6 +36,7 @@ export class UploadFileComponent implements OnInit {
   }
 
   onFileSelected( event: any ) {
+    console.log(event);
     const file = event.target.files[0]; // 1 archivo
     
     if(event.target.files.length !== 0) {
@@ -44,13 +45,21 @@ export class UploadFileComponent implements OnInit {
 
     this.getBase64( file ).then( data => {
       if (this.arrTipos.indexOf(file.type) === -1) {
-        console.log('tipo de archivo no permitido');
         this.limpiarDatos();
+         
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Tipo de archivo no permitido',
+        });
       } else if (file.size > this.sizeFile) { // 3MB
-        console.log('tamaño de archivo no permitido');
         this.limpiarDatos();
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'El archivo es muy grande, no debe superar los 3MB',
+        });
       } else{
-        console.log('todo bien');
         this.base64Output = data;
       }
     });
@@ -59,6 +68,11 @@ export class UploadFileComponent implements OnInit {
   guardar(  ) {
     if ( this.base64Output.length !== 0 ) {
       console.log(this.base64Output);
+      Swal.fire({
+        icon: 'success',
+        title: '¡Guardado!',
+        text: 'Guardado correctamente',
+      });
     } else {
       console.log('NO subido');
     }

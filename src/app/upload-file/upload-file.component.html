@@ -2,8 +2,9 @@
 <div class="container mt-4">
         <div class="input-group mb-3 d-flex justify-content-start">
             <input 
-            id="files" 
-            style="visibility:hidden;" 
+            id="files"
+            class="col-1"
+            style="visibility:hidden;"
             type="file"
             accept="{{arrTipos}}"
             (change)="onFileSelected($event)"
@@ -15,6 +16,7 @@
                 class="btn btn-danger"
                 type="button"
                 (click)="limpiarDatos()"
+                [disabled]="!base64Output"
             >
                 Eliminar
             </button>
